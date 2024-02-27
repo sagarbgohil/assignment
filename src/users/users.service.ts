@@ -30,7 +30,7 @@ export class UsersService {
       });
     } catch (e) {
       console.log(e);
-      throw new NotFoundException('User not found');
+      throw new NotFoundException('User already exists');
     }
     try {
       // Send OTP via email
@@ -56,14 +56,14 @@ export class UsersService {
       port: 465,
       secure: true,
       auth: {
-        user: 'testdevquick@gmail.com',
-        pass: 'hovx ucgv moow rwzl',
+        user: this.configService.get<string>('GMAIL_USER'),
+        pass: this.configService.get<string>('GMAIL_PASS'),
       },
     });
 
     // Define email options
     const mailOptions = {
-      from: 'testdevquick@gmail.com',
+      from: this.configService.get<string>('GMAIL_USER'),
       to: email,
       subject: 'One-Time Password (OTP) for Registration',
       text: `Your OTP for registration is: ${otp}`,
