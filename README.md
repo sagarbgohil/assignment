@@ -137,12 +137,12 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
 
 - **Response:**
 
-```json
-{
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcwOTAzMTQ5OH0.zr6IjdGtC42wv9eHtraKOn0sMAx7-H2iSvyjQUSxNSw",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcxMDMyMzg5OH0.9xL5MPhFttazl147NXulGcFg7zH4OMXiE6pbWmyHDY8"
-}
-```
+  ```json
+  {
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcwOTAzMTQ5OH0.zr6IjdGtC42wv9eHtraKOn0sMAx7-H2iSvyjQUSxNSw",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcxMDMyMzg5OH0.9xL5MPhFttazl147NXulGcFg7zH4OMXiE6pbWmyHDY8"
+  }
+  ```
 
 ### Update User
 
@@ -162,23 +162,23 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
 
 - **Response:**
 
-```json
-{
-    "status": 200,
-    "message": "User updated successfully",
-    "data": {
-        "id": 13,
-        "email": "test@example.com",
-        "password": "$2b$10$mhCA7sQcUEUyufDbKuSYfuQ/5DerTrcb07wBPnwnhD3Y63qbe6uU.",
-        "name": "Sagar",
-        "otp": "239960",
-        "verified": true,
-        "gender": "M",
-        "createdAt": "2024-02-27T08:05:15.784Z",
-        "updatedAt": "2024-02-27T09:40:01.792Z"
-    }
-}
-```
+  ```json
+  {
+      "status": 200,
+      "message": "User updated successfully",
+      "data": {
+          "id": 13,
+          "email": "test@example.com",
+          "password": "$2b$10$mhCA7sQcUEUyufDbKuSYfuQ/5DerTrcb07wBPnwnhD3Y63qbe6uU.",
+          "name": "Sagar",
+          "otp": "239960",
+          "verified": true,
+          "gender": "M",
+          "createdAt": "2024-02-27T08:05:15.784Z",
+          "updatedAt": "2024-02-27T09:40:01.792Z"
+      }
+  }
+  ```
 
 ### Refresh Token
 
@@ -195,10 +195,10 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
 
 - **Response:**
 
-```json
-{
-    "status": 200,
-    "message": "Access token refreshed successfully",
-    "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc5MjYsImV4cCI6MTcwOTAzMTUyNn0.Xo-X5HhgNAIEHq5wZgBKw5NPLE5i9O9FLyYV2cFqeQk"
-}
-```
+  ```json
+  {
+      "status": 200,
+      "message": "Access token refreshed successfully",
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc5MjYsImV4cCI6MTcwOTAzMTUyNn0.Xo-X5HhgNAIEHq5wZgBKw5NPLE5i9O9FLyYV2cFqeQk"
+  }
+  ```
