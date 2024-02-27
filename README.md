@@ -46,23 +46,27 @@
 5. Validation Requirements for Required APIs: Ensure compliance with specified standards and security measures.
 6. DB validation is required for retrieving user identity information. Avoid using Type ANY.
 
-# Assignment API Documentation
+## Assignment API Documentation
 
 This documentation outlines the endpoints and their usage for the Assignment API.
 
-## Base URL
+### Base URL
+
 All endpoints are relative to the base URL: `http://localhost:3000`
 
-## Authentication
+### Authentication
+
 The API uses JSON Web Tokens (JWT) for authentication. To access protected endpoints, you need to include a valid JWT token in the Authorization header using the Bearer scheme.
 
-## Endpoints
+### Endpoints
 
-### Register
+#### Register
+
 - **Method:** POST
 - **URL:** `/users/register`
 - **Description:** Registers a new user.
 - **Request Body:**
+
   ```json
   {
       "email": "sbg362002@gmail.com",
@@ -70,28 +74,47 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
   }
   ```
 
-- **Response:** No response returned.
+- **Response:**
 
-### Verify
+  ```json
+  {
+    "status": 200,
+    "message": "User created successfully and OTP sent via email"
+  }
+  ```
+
+#### Verify
+
 - **Method:** POST
 - **URL:** `/users/verify`
 - **Description:** Verifies user with OTP.
 - **Request Body:**
+
   ```json
   {
       "email": "sbg362002@gmail.com",
       "otp": "239960"
   }
   ```
-- **Response:** No response returned.
 
-### All Users
+- **Response:**
+
+  ```json
+  {
+    "status": 200,
+    "message": "OTP verified successfully"
+  }
+  ```
+
+#### All Users
+
 - **Method:** GET
 - **URL:** `/users/all`
 - **Description:** Retrieves all users.
 - **Response:** Returns a list of all users.
 
 ### Get User
+
 - **Method:** GET
 - **URL:** `/users`
 - **Description:** Retrieves details of the authenticated user.
@@ -99,24 +122,36 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
 - **Response:** Returns user details.
 
 ### Login
+
 - **Method:** POST
 - **URL:** `/login`
 - **Description:** Logs in a user.
 - **Request Body:**
+
   ```json
   {
       "email": "test@example.com",
       "password": "Test@123"
   }
   ```
-- **Response:** No response returned.
+
+- **Response:**
+
+```json
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcwOTAzMTQ5OH0.zr6IjdGtC42wv9eHtraKOn0sMAx7-H2iSvyjQUSxNSw",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc4OTgsImV4cCI6MTcxMDMyMzg5OH0.9xL5MPhFttazl147NXulGcFg7zH4OMXiE6pbWmyHDY8"
+}
+```
 
 ### Update User
+
 - **Method:** PATCH
 - **URL:** `/users`
 - **Description:** Updates user details.
 - **Request Header:** Authorization: Bearer `<JWT Token>`
 - **Request Body:**
+
   ```json
   {
       "email": "test@example.com",
@@ -124,18 +159,46 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
       "gender": "M"
   }
   ```
-- **Response:** No response returned.
+
+- **Response:**
+
+```json
+{
+    "status": 200,
+    "message": "User updated successfully",
+    "data": {
+        "id": 13,
+        "email": "test@example.com",
+        "password": "$2b$10$mhCA7sQcUEUyufDbKuSYfuQ/5DerTrcb07wBPnwnhD3Y63qbe6uU.",
+        "name": "Sagar",
+        "otp": "239960",
+        "verified": true,
+        "gender": "M",
+        "createdAt": "2024-02-27T08:05:15.784Z",
+        "updatedAt": "2024-02-27T09:40:01.792Z"
+    }
+}
+```
 
 ### Refresh Token
+
 - **Method:** POST
 - **URL:** `/users/refresh-token`
 - **Description:** Refreshes the JWT token.
 - **Request Body:**
+
   ```json
   {
       "refreshToken": "<refreshToken>"
   }
   ```
-- **Response:** No response returned.
+
+- **Response:**
+
+```json
+{
+    "status": 200,
+    "message": "Access token refreshed successfully",
+    "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJpYXQiOjE3MDkwMjc5MjYsImV4cCI6MTcwOTAzMTUyNn0.Xo-X5HhgNAIEHq5wZgBKw5NPLE5i9O9FLyYV2cFqeQk"
+}
 ```
-Please replace `<JWT Token>` and `<refreshToken>` with actual values when making requests.
