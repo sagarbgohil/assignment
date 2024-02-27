@@ -1,73 +1,142 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Assignment
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 1. Registration API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- **Objective**: Allow users to register by providing their email and password.
+- **Steps**:
+  1. User inputs email and password for registration.
+  2. Implement email verification logic before registration using a one-time password (OTP) sent to the provided email address.
 
-## Description
+## 2. Login API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Objective**: Enable users to log in using their registered email and password.
+- **Steps**:
+  1. Users log in by providing their email and password.
+  2. Upon successful authentication, generate and return an Auth JWT (JSON Web Token) as an authentication token.
 
-## Installation
+## 3. Reference Token API
 
-```bash
-$ npm install
+- **Objective**: Create an API to refresh the token.
+- **Steps**:
+  1. User inputs refresh token.
+  2. Return an Auth JWT token with expiry 1 hour.
+
+## 4. Get User API
+
+- **Objective**: Retrieve user information.
+- **Steps**: Implement an API endpoint that fetches user details based on their authentication.
+
+## 5. Update User API
+
+- **Objective**: Enable users to update their information.
+- **Steps**: Implement an API endpoint that allows users to update their profile details.
+
+## Language and Tools
+
+- NestJS
+- TypeScript
+- Prisma (ORM)
+
+## Acceptance Criteria
+
+1. Create the login token validation part as a separate middleware for other servers to use.
+2. Do not use any as the type of arg injected into each function.
+3. Each validator that checks for a string should not accept an empty string.
+4. For environment variables, validate using the Config Module of Nest JS.
+5. Validation Requirements for Required APIs: Ensure compliance with specified standards and security measures.
+6. DB validation is required for retrieving user identity information. Avoid using Type ANY.
+
+
+```markdown
+# Assignment API Documentation
+
+This documentation outlines the endpoints and their usage for the Assignment API.
+
+## Base URL
+All endpoints are relative to the base URL: `http://localhost:3000`
+
+## Authentication
+The API uses JSON Web Tokens (JWT) for authentication. To access protected endpoints, you need to include a valid JWT token in the Authorization header using the Bearer scheme.
+
+## Endpoints
+
+### Register
+- **Method:** POST
+- **URL:** `/users/register`
+- **Description:** Registers a new user.
+- **Request Body:**
+  ```json
+  {
+      "email": "sbg362002@gmail.com",
+      "password": "Test@123"
+  }
+  ```
+- **Response:** No response returned.
+
+### Verify
+- **Method:** POST
+- **URL:** `/users/verify`
+- **Description:** Verifies user with OTP.
+- **Request Body:**
+  ```json
+  {
+      "email": "sbg362002@gmail.com",
+      "otp": "239960"
+  }
+  ```
+- **Response:** No response returned.
+
+### All Users
+- **Method:** GET
+- **URL:** `/users/all`
+- **Description:** Retrieves all users.
+- **Response:** Returns a list of all users.
+
+### Get User
+- **Method:** GET
+- **URL:** `/users`
+- **Description:** Retrieves details of the authenticated user.
+- **Request Header:** Authorization: Bearer `<JWT Token>`
+- **Response:** Returns user details.
+
+### Login
+- **Method:** POST
+- **URL:** `/login`
+- **Description:** Logs in a user.
+- **Request Body:**
+  ```json
+  {
+      "email": "test@example.com",
+      "password": "Test@123"
+  }
+  ```
+- **Response:** No response returned.
+
+### Update User
+- **Method:** PATCH
+- **URL:** `/users`
+- **Description:** Updates user details.
+- **Request Header:** Authorization: Bearer `<JWT Token>`
+- **Request Body:**
+  ```json
+  {
+      "email": "test@example.com",
+      "name": "Sagar",
+      "gender": "M"
+  }
+  ```
+- **Response:** No response returned.
+
+### Refresh Token
+- **Method:** POST
+- **URL:** `/users/refresh-token`
+- **Description:** Refreshes the JWT token.
+- **Request Body:**
+  ```json
+  {
+      "refreshToken": "<refreshToken>"
+  }
+  ```
+- **Response:** No response returned.
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Please replace `<JWT Token>` and `<refreshToken>` with actual values when making requests.
