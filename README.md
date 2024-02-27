@@ -46,8 +46,6 @@
 5. Validation Requirements for Required APIs: Ensure compliance with specified standards and security measures.
 6. DB validation is required for retrieving user identity information. Avoid using Type ANY.
 
-
-```markdown
 # Assignment API Documentation
 
 This documentation outlines the endpoints and their usage for the Assignment API.
@@ -71,6 +69,7 @@ The API uses JSON Web Tokens (JWT) for authentication. To access protected endpo
       "password": "Test@123"
   }
   ```
+
 - **Response:** No response returned.
 
 ### Verify
